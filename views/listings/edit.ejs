@@ -1,0 +1,61 @@
+<% layout("/layouts/boilerplate") -%>
+
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+    <!-- <br><br> -->
+    <h3>Edit Your Listing</h3>
+    <form method="POST" action="/listings/<%=listing.id%>?_method=PUT" class="needs-validation" novalidate>
+
+    <div class="mb-3">
+            <label for="title" class="form-label">Title of Your Listing</label>
+            <input type="text" required class="form-control" name="listing[title]", value="<%=listing.title%>" >
+            <div class="valid-feedback">Title looks good</div>
+            <div class="invalid-feedback">Title is mandatory</div>
+    </div>  
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Description of Your Listing</label>
+        <textarea type="text" required class="form-control" name="listing[description]"><%=listing.description%></textarea>
+        <div class="invalid-feedback">Description is mandatory</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="image" class="form-label">Image URL</label>
+        <input type="text" required="true" class="form-control" name="listing[image][url]" value="<%=listing.image.url%>">
+        <div class="invalid-feedback">Image is mandatory</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="price" class="form-label">Price of Your Listing</label>
+        <input type="text" required="true" class="form-control" name="listing[price]", value="<%=listing.price%>" >
+        <div class="invalid-feedback">Price is mandatory</div>
+    </div>
+
+    <div class="row">   
+        <div class="mb-3 col-md-6">
+            <label for="location" class="form-label">Location of Your Listing</label>
+            <input type="text" required class="form-control" name="listing[location]", value="<%=listing.location%>" >
+            <div class="invalid-feedback">Location is mandatory</div>
+        </div>
+
+        <div class="mb-3 col-md-6">
+            <label for="country" class="form-label">Country of Your Listing</label>
+            <input type="text" required class="form-control" name="listing[country]", value="<%=listing.country%>" >
+            <div class="invalid-feedback">Country is mandatory</div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-dark edit-btn mb-3">Edit</button>
+        <!-- <br><br> -->
+        
+    </form>
+    </div>
+</div>  
+
+        <!-- <input type="text", name="listing[title]", value="<%=listing.title%>" ><br><br>
+        <textarea rows="2" cols="100" type="text", name="listing[description]"><%=listing.description%></textarea><br><br>
+        <input type="number", name="listing[price]", value="<%=listing.price%>"><br><br>
+        <textarea rows="2" cols="100" type="text", name="listing[image]"><%=listing.image.url%></textarea><br><br>
+        <input type="text", name="listing[country]", value="<%=listing.country%>"><br><br>
+        <input type="text", name="listing[location]", value="<%=listing.location%>"><br><br>
+        <button>Edit</button> -->

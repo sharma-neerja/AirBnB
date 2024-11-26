@@ -1,0 +1,59 @@
+<% layout("/layouts/boilerplate") -%>
+
+<div class="row">
+    <div class="col-8 offset-2">
+        <br><br>
+        <h3>Create New Listing</h3>
+        <form method="POST" action="/listings/create" novalidate class="needs-validation">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title of Your Listing</label>
+            <input type="text" class="form-control" id="title" name="listing[title]" required>
+            <div class="valid-feedback">Title looks good</div>
+            <div class="invalid-feedback">Title is mandatory</div>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description of Your Listing</label>
+            <textarea type="text" class="form-control" name="listing[description] " required></textarea>
+            <div class="valid-feedback">Description looks good</div>
+            <div class="invalid-feedback">Description is mandatory</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Image URL</label>
+            <input type="text" class="form-control" name="listing[image]">
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Price of Your Listing</label>
+            <input required class="form-control" name="listing[price]" required>
+            <div class="invalid-feedback">Title is mandatory</div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-6" >
+                <label for="location" class="form-label">Location of your Listing</label>
+                <input type="text" class="form-control" name="listing[location]" required>
+                <div class="invalid-feedback">Location is mandatory</div>
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="country" class="form-label">Country of your Listing</label>
+                <input type="text" class="form-control" name="listing[country]" required>
+                <div class="invalid-feedback">Country name is mandatory</div>
+            </div>
+        </div> 
+        <button type="submit" class="btn btn-primary add-btn">Add</button>
+        <br><br>
+        </form>
+    </div>
+</div>
+
+<!-- <input type="text", name="listing[title]", placeholder="Enter title of your listing"><br><br>    
+        <textarea rows="2" cols="100" type="text", name="listing[description]">Enter description of your listing</textarea><br><br>
+        <input type="number", name="listing[price]", placeholder="Enter price of your listing"><br><br>
+        <textarea rows="2" cols="100" type="text", name="listing[image]">Enter url of your listing image</textarea><br><br>
+        <input type="text", name="listing[country]", placeholder="Enter country of your listing"><br><br>
+        <input type="text", name="listing[location]", placeholder="Enter location of your listing"><br><br>
+        <button>Add</button> -->
