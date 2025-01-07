@@ -4,7 +4,7 @@
     <div class="col-8 offset-2">
         <br><br>
         <h3>Create New Listing</h3>
-        <form method="POST" action="/listings/create" novalidate class="needs-validation">
+        <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title of Your Listing</label>
             <input type="text" class="form-control" id="title" name="listing[title]" required>
@@ -15,15 +15,21 @@
 
         <div class="mb-3">
             <label for="description" class="form-label">Description of Your Listing</label>
-            <textarea type="text" class="form-control" name="listing[description] " required></textarea>
+            <textarea type="text" class="form-control" id="description" name="listing[description]" required></textarea>
             <div class="valid-feedback">Description looks good</div>
             <div class="invalid-feedback">Description is mandatory</div>
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <label for="image" class="form-label">Image URL</label>
             <input type="text" class="form-control" name="listing[image]">
+        </div> -->
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Image URL</label>
+            <input type="file" class="form-control" name="listing[image]">
         </div>
+
 
         <div class="mb-3">
             <label for="price" class="form-label">Price of Your Listing</label>
@@ -47,6 +53,10 @@
         <button type="submit" class="btn btn-primary add-btn">Add</button>
         <br><br>
         </form>
+
+        <div class="btns">
+            <a class="btn btn-dark offset-1 col-1" href="/listings">Back</a>
+        </div>
     </div>
 </div>
 

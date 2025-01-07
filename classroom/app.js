@@ -5,7 +5,7 @@ const posts = require ("./routes/posts.js");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const path = require("path");
-const flash = require("onnet-flash");
+const flash = require("connect-flash");
 const sessionOptions = {
     secret: "mysuperstring",
     resave: false, 
@@ -19,6 +19,8 @@ app.use(flash());
 
 // app.use(session({secret: "mysuperstring", resave: false, saveUninitialized: true
 // }));
+
+
 
 app.use(session(sessionOptions));
 
@@ -44,15 +46,27 @@ app.get("/greet", (req, res) => {
     res.send(`hello ${name}`);
 });
 
+app.use((req, res, next) => {
+    res.locals.successMsg = req.flash("success");
+    res.locals.failureMsg = req.flash("failure");
+    next();
+});
+
 app.get("/register", (req, res) => {
     let {name = "anonymous"} = req.query;
     req.session.name = name;
-    // console.log(res.session);
-    req.flash("success", "user registered successfully");
+    if (name === "anonymous") {
+        req.flash ("failure", "user not registered");
+    } else {
+        req.flash("success", "user registered successfully");
+    };
     res.redirect("/hello");
 });
 app.get("/hello", (req,res) => {
-    res.render("page.ejs");
+    // res.locals.successMsg = req.flash("success");
+    // res.locals.failureMsg = req.flash("failure");
+    // res.render("page.ejs", {name: req.session.name,  msg: req.flash("success")});
+    res.render("page.ejs", {name: req.session.name});
 });
 
 
