@@ -1,4 +1,5 @@
 const Listing = require("./models/listing");
+const Review = require("./models/review");
 const wrapAsync = require("./utils/wrapAsync.js");
 const {listingSchema, reviewSchema} = require("./schema.js");
 const ExpressError = require("./utils/expressError.js");
@@ -41,8 +42,9 @@ module.exports.isOwner = wrapAsync(async(req, res, next) => {
 });
 
 module.exports.isReviewAuthor = wrapAsync(async(req, res, next) => {
-    let {reviewId} = req.params;
-    let review = await Review.findById(id);
+    let {id, reviewId} = req.params;
+    console.log("deletion starts")
+    let review = await Review.findById(reviewId);
     if (!review.author.equals(res.locals.curUser._id)) {
         req.flash("error", "You don't have permission to make changes");
         console.log("not a review author");
