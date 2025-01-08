@@ -31,7 +31,7 @@ router.get("/new", isLoggedIn, (req, res) => {
 //Show route
 router.get("/:id", wrapAsync(async(req, res) => {
     let {id} = req.params;
-    let listing = await Listing.findById(id).populate("reviews").populate("owner");
+    let listing = await Listing.findById(id).populate({path: "reviews", populate: {path: "author"},}).populate("owner");
     if (!listing) {
         req.flash("error", "Listing doesn't exist");
         res.redirect("/listings");
@@ -66,7 +66,8 @@ router.post("/", isLoggedIn, upload.single('listing[image]'), validateListing, w
     console.log(url, "...",filename);
      const newListing = new Listing(req.body.listing);
     newListing.image = {url, filename};
-    newListing.owner = req.user_id;
+    newListing.owner = req.user._id;
+    console.log(newListing.owner);
     await newListing.save();
     req.flash("success", "New Listing added");
     res.redirect("/listings")

@@ -72,7 +72,7 @@
            <%for(let review of listing.reviews) {%>
             <div class="card col-5 mb-3 ms-3" style="width: 18rem;">
                 <div class="card-body">
-                  <h5 class="card-title">review.author</h5>
+                  <h5 class="card-title"><%= review.author.username %></h5>
                   <!-- <p class="card-text"><b>Stars<%= review.rating%></b></p> -->
                   <p class="starability-result card-text" data-rating= <%= review.rating%>>
                     </p>

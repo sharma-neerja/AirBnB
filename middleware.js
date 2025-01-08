@@ -40,6 +40,17 @@ module.exports.isOwner = wrapAsync(async(req, res, next) => {
     next();
 });
 
+module.exports.isReviewAuthor = wrapAsync(async(req, res, next) => {
+    let {reviewId} = req.params;
+    let review = await Review.findById(id);
+    if (!review.author.equals(res.locals.curUser._id)) {
+        req.flash("error", "You don't have permission to make changes");
+        console.log("not a review author");
+        return res.redirect(`/listings/${id}`);
+    };
+    next();
+});
+
 //validation listing function
 module.exports.validateListing = (req, res, next) => {
     console.log("validation starts");
@@ -55,7 +66,7 @@ module.exports.validateListing = (req, res, next) => {
 };
 
 //validation review function
-const validateReview = (req, res, next) => {
+module.exports.validateReview = (req, res, next) => {
     let {error} = reviewSchema.validate(req.body);
     if (error) {
         let errMsg = error.details.map((el) => el.message).join(",");
