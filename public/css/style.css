@@ -113,3 +113,20 @@
     padding-right: 0;
     border: none !important;
 }
+
+.edit-form-img {
+    height: 200px;
+    width: 250px;
+    object-fit: cover;
+}
+
+/* #map {
+    height: 300px;
+    width: 300px;
+    
+} */
+
+/* navbr-search */
+
+
+

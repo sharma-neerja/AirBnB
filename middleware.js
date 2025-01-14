@@ -30,6 +30,22 @@ module.exports.saveRedirectUrl = (req, res, next) => {
     next();
 };
 
+module.exports.isReviewerLoggedIn = async(req, res, next) => {
+    let {id} = req.params;
+    let listing = await Listing.findById(req.params.id);
+    console.log(req.user);
+    console.log(req.path, "..", req.originalUrl);
+    if(!req.isAuthenticated()) {
+        req.session.redirectUrl = `/listings/${id}`;
+        req.flash("error", "You must be logged in");
+        console.log(req.session.redirectUrl);
+        console.log("user not logged in");
+        return res.redirect("/login");
+    }
+    console.log("user logged in");
+    next();
+};
+
 module.exports.isOwner = wrapAsync(async(req, res, next) => {
     let {id} = req.params;
     let listing = await Listing.findById(id);
@@ -38,6 +54,7 @@ module.exports.isOwner = wrapAsync(async(req, res, next) => {
         console.log("not a listing owner");
         return res.redirect(`/listings/${id}`);
     };
+    console.log("user is the owner of listing");
     next();
 });
 
