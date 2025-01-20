@@ -26,14 +26,34 @@
 
     <div class="mb-3">
         <label for="image" class="form-label">Upload New Image</label>
-        <input type="file" required="true" class="form-control" name="listing[image]" >
+        <input type="file" class="form-control" name="listing[image]" value="" >
         <div class="invalid-feedback">Image is mandatory</div>
     </div>
 
-    <div class="mb-3">
-        <label for="price" class="form-label">Price of Your Listing</label>
-        <input type="text" required="true" class="form-control" name="listing[price]", value="<%=listing.price%>" >
-        <div class="invalid-feedback">Price is mandatory</div>
+    <div class="row">
+        <div class="mb-3 col-md-6">
+            <label for="price" class="form-label">Price of Your Listing</label>
+            <input type="text" required="true" class="form-control" name="listing[price]", value="<%=listing.price%>" >
+            <div class="invalid-feedback">Price is mandatory</div>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="category" class="form-label">Categoty of Your Listing</label>
+            
+            <select class="form-control" name="listing[category]">
+                <option><%=(listing.category)%></option>
+                <option value="rooms">Rooms</option>
+                <option value="mountains">Mountains</option>
+                <option value="castels">Castels</option>
+                <option value="camping">Camping</option>
+                <option value="amazing Pools">Amazing Pools</option>
+                <option value="farms">Farms</option>
+                <option value="arctic">Arctic</option>
+                <option value="domes">Domes</option>
+                <option value="boats">Boats</option>
+            </select>
+            <div class="invalid-feedback">Category is mandatory</div>
+            <div class="invalid-feedback">Category is mandatory</div>
+        </div>
     </div>
 
     <div class="row">   

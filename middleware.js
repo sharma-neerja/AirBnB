@@ -73,6 +73,8 @@ module.exports.isReviewAuthor = wrapAsync(async(req, res, next) => {
 //validation listing function
 module.exports.validateListing = (req, res, next) => {
     console.log("validation starts");
+    console.log(req.params);
+    console.log(req.body);
     const {error} = listingSchema.validate(req.body);
     if (error) {
         const errMsg = error.details.map((el) => el.message).join(",");

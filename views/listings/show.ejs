@@ -9,6 +9,12 @@
             <p class="card-text">
                 <i>Owned by: <%=listing.owner.username%></i><br>
                 <%=listing.description%><br>
+                <%if(typeof listing.category != "undefined") {%>
+                    <%=(listing.category).charAt(0).toUpperCase() + (listing.category).slice(1)%>
+                    <%} else {%>
+                   <%= (listing.category)%>
+                   <%}%>
+                 <br>
                 <%=listing.price.toLocaleString("en-IN")%><br>
                 <%=listing.country%><br>
                 <%=listing.location%><br>
@@ -20,7 +26,7 @@
     <% if(curUser && listing.owner._id.equals(curUser._id) ) { %>
     <div class="btns">
         <a class="btn btn-dark edit-btn offset-3 col-1" href="/listings/<%= listing._id %>/edit">Edit</a>
-        <form method="POST" action="/listings/<%= listing._id%>?_method=DELETE">
+        <form onsubmit="return confirmDeleteListing()" method="POST" action="/listings/<%= listing._id%>?_method=DELETE">
             <button class="btn btn-dark offset-2">Delete</button>
         </form>
       <% } %>  
@@ -82,7 +88,7 @@
                   <p class="card-text"><%= review.comment%></p>
                 </div>
                 <% if (curUser && review.author._id.equals(curUser._id) ) { %>
-                <form method="post" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
+                <form onsubmit="return confirmDeleteReview()" method="post" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
                     <button class="btn btn-sm btn-dark">Delete</button>
                 </form>
                 <% } %>
@@ -97,6 +103,16 @@
         <div id="map"></div>
     </div>
 </div>
+
+<script>
+    function confirmDeleteListing() {
+      return confirm("Are you sure you want to delete this listing?");
+    }
+
+    function confirmDeleteReview() {
+      return confirm("Are you sure you want to delete this Review?");
+    }
+  </script>
 
 <script>
     let mapToken = "<%=process.env.MAP_TOKEN %>";

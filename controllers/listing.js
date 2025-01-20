@@ -66,7 +66,7 @@ module.exports.createListing = async (req, res, next) => {
             res.redirect("/listings");
         };
         let imageUrl = listing.image.url;
-        imageUrl = imageUrl.replace("/upload", "/upload/e_blue:500/c_fill,h_200,w_250");
+        imageUrl = imageUrl.replace("/upload", "/upload/c_fill,h_200,w_250");
         console.log(imageUrl);
         res.render("listings/edit", {listing, imageUrl});
     };
@@ -86,9 +86,12 @@ module.exports.createListing = async (req, res, next) => {
         let {id} = req.params;
         let listing = await Listing.findByIdAndUpdate(id, {...req.body.listing});
         console.log("listing searched",listing);
-        console.log("req.file:");
+       
         console.log("req.file:", req.file);
-        if (req.file) {
+        console.log(typeof req.file);
+        
+        // if(req.file) { (this also works, even when type of req.file is undefind)
+        if (typeof req.file != "undefined") {
             let url = req.file.path; 
             let filename = req.file.filename;
             listing.image = {url, filename};
@@ -98,6 +101,7 @@ module.exports.createListing = async (req, res, next) => {
         req.flash("success", "Your listing updated");
         res.redirect(`/listings/${id}`);
     };
+    
          
     //Destroy route
     module.exports.destroy = async (req, res) => {

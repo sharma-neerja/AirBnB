@@ -31,11 +31,29 @@
             
         </div>
 
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label for="price" class="form-label">Price of Your Listing</label>
+                <input required class="form-control" name="listing[price]" required>
+                <div class="invalid-feedback">Price is mandatory</div>
+            </div>
 
-        <div class="mb-3">
-            <label for="price" class="form-label">Price of Your Listing</label>
-            <input required class="form-control" name="listing[price]" required>
-            <div class="invalid-feedback">Title is mandatory</div>
+            <div class="mb-3 col-md-6">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-control" name="listing[category]" required>
+                    <option>Select a category</option>
+                    <option value="rooms">Rooms</option>
+                    <option value="mountains">Mountains</option>
+                    <option value="castels">Castels</option>
+                    <option value="camping">Camping</option>
+                    <option value="Amazing Pools">Amazing pools</option>
+                    <option value="farms">Farms</option>
+                    <option value="arctic">Arctic</option>
+                    <option value="domes">Domes</option>
+                    <option value="boats">Boats</option>
+                </select>
+                <div class="invalid-feedback">Category is mandatory</div>
+            </div>
         </div>
 
         <div class="row">
